@@ -21,8 +21,16 @@ services:
       - redis
     networks:
       - safetynet
+  nginx:
+    build:
+      context: infra/nginx
+    image: "safetynet-nginx:1.17.8"
+    depends_on:
+      - app
+    networks:
+      - safetynet
     ports:
-      - "5000:5000"
+      - "8080:8080"
 networks:
   safetynet:
     ipam:
