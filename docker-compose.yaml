@@ -1,0 +1,17 @@
+version: "3.7"
+services:
+  redis:
+    build:
+      context: infra/redis
+    image: "safetynet-redis:5.0.7"
+    networks:
+      - safetynet
+    # Increases the size of the backlog for maximum outstanding connections
+    sysctls:
+      - net.core.somaxconn=1024
+networks:
+  safetynet:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.28.0.0/28
