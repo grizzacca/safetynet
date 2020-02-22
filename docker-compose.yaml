@@ -9,6 +9,20 @@ services:
     # Increases the size of the backlog for maximum outstanding connections
     sysctls:
       - net.core.somaxconn=1024
+  app:
+    build:
+      context: app
+    image: "safetynet-app:1.0.0"
+    environment:
+      - FLASK_APP=/safetynet/app
+      - FLASK_ENV=development
+    # Doesn't wait for Redis to be fully configured before starting the app
+    depends_on:
+      - redis
+    networks:
+      - safetynet
+    ports:
+      - "5000:5000"
 networks:
   safetynet:
     ipam:
