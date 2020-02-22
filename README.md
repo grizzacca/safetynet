@@ -1,5 +1,9 @@
 # safetynet
 
+## Bringing up the stack
+Build and deploy all the containers: ```docker-compose up --scale redis=6 --scale app=2```
+Destroy everything after testing: ```docker-compose down --rmi all```
+
 ## Redis
 ### Creating a distributed cluster
 Followed the official guide from Redis Labs here: https://redis.io/topics/cluster-tutorial. They recommend a minimum of 3 master nodes.
