@@ -13,4 +13,4 @@ ENV LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
 COPY src/ /safetynet/
 RUN pip3 install -r /safetynet/requirements.txt
 
-ENTRYPOINT ["flask", "run", "--host", "0.0.0.0"]
+ENTRYPOINT ["/safetynet/entrypoint.sh"]
