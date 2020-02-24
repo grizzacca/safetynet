@@ -24,6 +24,8 @@ def get_blacklist_status(original_path):
     try:
         client = RedisCluster(startup_nodes=[startup_nodes])
         status = client.get(original_path)
+
+        # if the key does not exist, the client returns None
         if status:
             status = status.decode('utf-8')
         else:
