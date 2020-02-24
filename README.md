@@ -24,6 +24,8 @@ curl http://localhost:8080/urlinfo/1/abc.example.com:2000/bad/wolf
 }
 ```
 
+The status field in the response body indicates whether it's safe to proceed or there's a risk of malware, and describes the type of malware associated with it.
+
 ## Project structure
 ### Infrastructure pieces
 
