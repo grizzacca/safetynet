@@ -16,7 +16,7 @@ Test it in browser: ```http://localhost:8080/urlinfo/1/abc.example.com:2000/bad/
 
 Sample output:
 ```
-http://localhost:8080/urlinfo/1/abc.example.com:2000/bad/wolf
+curl http://localhost:8080/urlinfo/1/abc.example.com:2000/bad/wolf
 ---
 {
   "status": "malware|adware",
@@ -27,20 +27,17 @@ http://localhost:8080/urlinfo/1/abc.example.com:2000/bad/wolf
 ## Project structure
 ### Infrastructure pieces
 
-**Project root:**
-All commands to build, deploy, bootstrap, and test the application are run from within this directory:
+**Project root:** all commands to build, deploy, bootstrap, and test the application are run from within this directory:
 * Docker Compose file to deploy Redis database backend, NGINX load balancer, and application
 * Simple bootstrap script to load in test data to assist in development
 
-**infra directory:**
-Everything needed to provision a small environment for development and testing:
+**infra directory:** everything needed to provision a small environment for development and testing:
 * Dockerfiles and configuration for Redis and NGINX
 
-**app directory:**
-The application code:
+**app directory:** the application code:
 * Dockerfile and entrypoint script
-* src: Flask application and requirements file for installing packages via Pip on Docker build
-* src.api: versions of the API that can be used by the application to fulfill client requests
+* *src:* Flask application and requirements file for installing packages via Pip on Docker build
+* *src.api:* versions of the API that can be used by the application to fulfill client requests
 
 ## Backend
 ### Creating a distributed Redis cluster
