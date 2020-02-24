@@ -18,9 +18,11 @@ def test_bad_url(client):
     assert response.status_code == 404
 
 
-@patch('api.v1.routes.get_blacklist_status', return_value="whitelisted")
+@patch('api.v1.routes.get_blacklist_status', return_value="malware|keylogger")
 def test_safetycheck(mock_function, client):
+    answer = {"url": "def.example.com:4000/woot?foo=bar",
+              "status": "malware|keylogger"}
+
     response = client.get('/urlinfo/1/def.example.com:4000/woot?foo=bar')
     assert response.status_code == 200
-    assert json.loads(response.data.decode('utf-8')) ==\
-        {"url": "def.example.com:4000/woot?foo=bar", "status": "whitelisted"}
+    assert json.loads(response.data.decode('utf-8')) == answer

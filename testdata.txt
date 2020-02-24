@@ -1,5 +1,5 @@
 SET abc.example.com:2000/bad/wolf         malware|adware
 SET def.example.com:4000/oops?foo=bar     malware|keylogger
-SET www.abc.com:3000/hazaa                malware|ransomware
+SET www.abc.com:3000                      malware|ransomware
 SET www.def.com:6000/test?fizz=buzz       malware|trojan
 SET xyz.test.org:9000/no0o0o              malware|phishing

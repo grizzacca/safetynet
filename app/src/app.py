@@ -1,8 +1,11 @@
 from flask import Flask
-# from api.v1.routes import api as api_v1
 
 import importlib
+import logging
 import os
+
+
+LOGGER = logging.getLogger(__name__)
 
 
 app = Flask(__name__)
