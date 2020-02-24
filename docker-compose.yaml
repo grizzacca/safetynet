@@ -9,6 +9,14 @@ services:
     # Increases the size of the backlog for maximum outstanding connections
     sysctls:
       - net.core.somaxconn=1024
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 128M
+        reservations:
+          cpus: "0.25"
+          memory: 256M
   app:
     build:
       context: app
@@ -16,11 +24,22 @@ services:
     environment:
       - FLASK_APP=/safetynet/app
       - FLASK_ENV=development
+      - API_VERSION=1
+      - BACKEND_HOST=safetynet_redis_1
+      - BACKEND_PORT=6379
     # Doesn't wait for Redis to be fully configured before starting the app
     depends_on:
       - redis
     networks:
       - safetynet
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 128M
+        reservations:
+          cpus: "0.25"
+          memory: 256M
   nginx:
     build:
       context: infra/nginx
@@ -31,6 +50,14 @@ services:
       - safetynet
     ports:
       - "8080:8080"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 128M
+        reservations:
+          cpus: "0.25"
+          memory: 256M
 networks:
   safetynet:
     ipam:
